@@ -3,11 +3,8 @@
 
     import { ref } from 'vue';
 
-    const nombre = ref('Ronald');
+    const nombre = ref('');
 
-    const leerNombre = (event) => {
-        nombre.value = event.target.value;
-    }
 
 </script>
 
@@ -37,8 +34,7 @@
                     type="text"
                     placeholder="Nombre de la mascota: "
                     class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                    :value="nombre"
-                    @input="leerNombre"
+                    v-model="nombre"
                 >
             </div>
 
