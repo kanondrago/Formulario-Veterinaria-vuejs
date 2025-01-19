@@ -5,8 +5,8 @@
 
     const nombre = ref('Ronald');
 
-    const leerNombre = e => {
-        nombre.value = e.target.value;
+    const leerNombre = (event) => {
+        nombre.value = event.target.value;
     }
 
 </script>
