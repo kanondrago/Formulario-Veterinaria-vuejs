@@ -22,11 +22,11 @@
         // Validando que no esten vacios Object.values(paciente) => devuelve un arreglo de los valores de las propiedades del objeto
         if(Object.values(paciente).includes('')) {
             alerta.mensaje = 'Todos los campos son obligatorios'
-            alerta.tipo = 'exito';
+            alerta.tipo = 'error';
             return;
         }
-        alerta.mensaje = 'Mensaje enviado con exito'
-        alerta.tipo = 'success';
+        // alerta.mensaje = 'Mensaje enviado con exito'
+        // alerta.tipo = 'success';
     }
 
 
