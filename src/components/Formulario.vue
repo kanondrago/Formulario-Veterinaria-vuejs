@@ -2,11 +2,7 @@
 
     import { ref } from 'vue';
 
-    const nombre = ref('');
-
-    const leerNombre = (event) => {
-        nombre.value = event.target.value;
-    }
+    const nombre = ref('Laia');
 
 </script>
 
@@ -20,6 +16,8 @@
             <span class="text-indigo-600 font-bold">Administralos</span>
         </p>
 
+        {{ nombre }}
+
         <form class="bg-white shadow-2xl rounded-lg py-10 px-5">
             <div class="mb-5">
                 <label 
@@ -32,8 +30,7 @@
                     type="text" 
                     placeholder="Nombre de la mascota"
                     class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                    v-bind:value="nombre"
-                    v-on:input="leerNombre($event)"
+                    v-model="nombre"
                 >
             </div>
 
