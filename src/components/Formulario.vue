@@ -1,6 +1,12 @@
 <script setup>
 
+    import { ref } from 'vue';
 
+    const nombre = ref('');
+
+    const leerNombre = (event) => {
+        nombre.value = event.target.value;
+    }
 
 </script>
 
@@ -26,6 +32,8 @@
                     type="text" 
                     placeholder="Nombre de la mascota"
                     class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                    v-bind:value="nombre"
+                    v-on:input="leerNombre($event)"
                 >
             </div>
 
