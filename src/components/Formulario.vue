@@ -1,8 +1,40 @@
 <script setup>
 
-    import { ref } from 'vue';
+    import { reactive, ref } from 'vue';
+    import Alerta from './Alerta.vue';
 
-    const nombre = ref('Laia');
+    
+    const alerta = reactive({
+        tipo: '',
+        mensaje: '',
+    })
+
+    const paciente = reactive({
+        nombre: 'Ronald',
+        propietario: 'Oscar',
+        email: 'oscar@mail.com',
+        alta: '2025-03-19',
+        sintomas: 'Ingesta de producto químico',
+    });
+
+    const validar = (event) => {
+
+        // console.log('Mira tu....',Object.values(paciente))
+
+        if(Object.values(paciente).includes('')) {
+            alerta.mensaje = 'Todos los campos son obligatorios';
+            alerta.tipo = 'error';
+            console.log('alerta', alerta);
+            return;
+        }
+
+        alerta.mensaje = 'Todos los campos agregados correctamente';
+        alerta.tipo = 'exito';
+        
+        console.log('alerta', alerta);
+        console.log('Agregando a la base de datos');
+    }
+
 
 </script>
 
@@ -16,9 +48,17 @@
             <span class="text-indigo-600 font-bold">Administralos</span>
         </p>
 
-        {{ nombre }}
+        <Alerta
+            v-if="alerta.mensaje"
+            v-bind:alerta="alerta"
+        >
 
-        <form class="bg-white shadow-2xl rounded-lg py-10 px-5">
+        </Alerta>
+
+        <form 
+            class="bg-white shadow-2xl rounded-lg py-10 px-5"
+            v-on:submit.prevent="validar($event)">
+
             <div class="mb-5">
                 <label 
                     class="block text-gray-700 uppercase font-bold"
@@ -30,7 +70,7 @@
                     type="text" 
                     placeholder="Nombre de la mascota"
                     class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                    v-model="nombre"
+                    v-model="paciente.nombre"
                 >
             </div>
 
@@ -45,6 +85,7 @@
                     type="text" 
                     placeholder="Nombre de propietario"
                     class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                    v-model="paciente.propietario"
                 >
             </div>
 
@@ -59,6 +100,7 @@
                     type="email" 
                     placeholder="Email de propietario"
                     class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                    v-model="paciente.email"
                 >
             </div>
 
@@ -72,6 +114,7 @@
                     id=alta 
                     type="date" 
                     class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                    v-model="paciente.alta"
                 >
             </div>
 
@@ -84,14 +127,17 @@
                 <textarea
                     id=sintomas 
                     placeholder="Descrine los sintomas de los pacientes"
-                    class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40">
+                    class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40"
+                    v-model="paciente.sintomas"
+                >
                 </textarea>
             </div>
 
             <input 
                 type="submit"
                 value="Registrar Paciente"
-                class="bg-indigo-400 w-full p-3 text-white uppercase font-bold cursor-pointer hover:bg-indigo-700 transition-colors rounded-md">
+                class="bg-indigo-400 w-full p-3 text-white uppercase font-bold cursor-pointer hover:bg-indigo-700 transition-colors rounded-md"
+            >
 
         </form>
 
