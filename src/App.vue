@@ -1,12 +1,20 @@
 
 <script setup>
 
-  import { ref } from 'vue';
+  import { ref, reactive } from 'vue';
   
   import Header from './components/Header.vue'
   import Formulario from './components/Formulario.vue';
 
   const pacientes = ref([]);
+
+  const paciente = reactive({
+        nombre: 'Ronald',
+        propietario: 'Oscar',
+        email: 'oscar@mail.com',
+        alta: '2025-03-20',
+        sintomas: 'Ingesta de producto químico',
+  });
 
 </script>
 
@@ -15,7 +23,13 @@
     <Header></Header>
 
     <div class="mt-12 md:flex">
-      <Formulario></Formulario>
+      <Formulario 
+        v-model:nombre="paciente.nombre"
+        v-model:propietario="paciente.propietario"
+        v-model:email="paciente.email"
+        v-model:alta="paciente.alta"
+        v-model:sintomas="paciente.sintomas"
+      ></Formulario>
 
       <div class="md:w-1/2 md:h-screen overflow-y-scroll">
         <h3 class="font-black text-3xl text-center">Administra tus pacientes</h3>
